@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from scaler.models import Compounds, CompoundsFoods, Foods
+from models import Compounds, CompoundsFoods, Foods
 
 class FoodsSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -17,4 +17,4 @@ class CompoundsFoodsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = CompoundsFoods
 		depth = 2
-		fields = ['id', 'compound_id', 'food_id']#, 'food_id', 'orig_compound_name']
+		fields = ['id', 'compound_id', 'food_id']

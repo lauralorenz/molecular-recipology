@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from scaler.serializers import CompoundsSerializer, CompoundsFoodsSerializer
-from scaler.models import Compounds, CompoundsFoods
+from serializers import CompoundsSerializer, CompoundsFoodsSerializer
+from models import Compounds, CompoundsFoods
+from django.views.generic import View
 
 class CompoundsViewSet(viewsets.ModelViewSet):
 	queryset = Compounds.objects.all()
@@ -10,6 +11,10 @@ class CompoundsViewSet(viewsets.ModelViewSet):
 class CompoundsFoodsViewSet(viewsets.ModelViewSet):
 	queryset = CompoundsFoods.objects.all()
 	serializer_class=CompoundsFoodsSerializer
+
+
+def intro(request):
+    return render(request, 'intro.html', {})
 
 
 # Create your views here.
