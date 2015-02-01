@@ -13,8 +13,8 @@ class CompoundsFoodsViewSet(viewsets.ModelViewSet):
 	serializer_class=CompoundsFoodsSerializer
 
 
-def intro(request):
-    return render(request, 'intro.html', {})
+def index(request):
+    return render(request, 'index.html', {})
 
 
 # Create your views here.
