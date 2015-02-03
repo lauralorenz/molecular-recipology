@@ -134,3 +134,7 @@ target/
 
 # sftp configuration file
 sftp-config.json
+
+#Heroku
+venv
+staticfiles
