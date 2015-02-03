@@ -6,8 +6,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
 
   </head>
-  <body ng-controller="recipeCtrl as recipe"  class="container" style="background-color:#FBF8E5;">
-
+  <body ng-controller="recipeCtrl as recipe"  style="background-color:#FBF8E5;">
+<div class="container-fluid">
   <div ng-controller="tabCtrl as tab" ng-init="tab.tab=1">
    <hello-garlic></hello-garlic>
   <div ng-show="tab.tab == 2">
@@ -19,6 +19,7 @@
     </div>
 </div>
   </div>
+    </div>
    <script src="{% static "js/app.js"  %}">
     </script>
   </body>

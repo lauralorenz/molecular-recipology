@@ -1,8 +1,13 @@
-   <div ng-show="tab.isTab(1)">
-    <div class="pull-left">
+<div ng-show="tab.isTab(1)" class="row">
+    <div class="col-md-1 pull-left">
         <img src="/static/img/garlic_etsy_lesjouesgrises.jpg">
     </div>
-    <div class="pull-left">
- <div ng-click="tab.setTab(2)" align="left">Click me!</div>
+ <div class="col-md-6 pull-right">
+     <div style='vertical-align:central;padding-top:130px'>
+         <p style="font-size:xx-large">Hi! I'm Garlic.</p>
+     <p style="font-size:x-large">You may have used me in recipes before. </p>
+     <p style="font-size:medium">Probably 2 tablespoons worth.</p>
+     <p style="font-size:x-large">But maybe you invited some friends over, and doubled the recipe.</p>
+     <p style="font-size:large">So just 4 tablespoons of me instead, right?</p>
+     <button ng-click="tab.setTab(2)" class="btn-lg btn-default">Wrong...</button></div></div>
     </div>
-       </div>
