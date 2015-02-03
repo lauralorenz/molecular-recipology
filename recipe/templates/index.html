@@ -10,13 +10,23 @@
 <div class="container-fluid">
   <div ng-controller="tabCtrl as tab" ng-init="tab.tab=1">
    <hello-garlic></hello-garlic>
-  <div ng-show="tab.tab == 2">
-      <div>[[ recipe.divergence_index(recipe.ingredients) | number]]</div>
-    <div class="well" ng-repeat="ingredient in recipe.ingredients">
-      <h3>
-        <p>[[ingredient.name]], [[ingredient.density]]<em class="pull-right">[[ recipe.scale(14.78, 1, ingredient.moldb_average_mass) | number]] vs [[ recipe.scale(14.78, ingredient.density, ingredient.moldb_average_mass) | number]]</em></p>
-      </h3>
+  <div ng-show="tab.tab == 2" class="row">
+      <div class="col-md-12 text-center jumbotron">
+          <div class="pull-left">
+          <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="tab.tab=1">
+  <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+</button>
+      </div><div>
+          <p><h1>[[ recipe.divergence_index(recipe.ingredients) | number]]</h1></p>
+      <p><h2>times wrong!</h2></p></div></div>
+
+        <div  class="row" ng-repeat="ingredient in recipe.ingredients">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <p>My <strong>[[ingredient.name]]</strong> ratio will be off by <strong>[[ingredient.density]]X</strong>. Instead of [[ recipe.scale(14.78, 1, ingredient.moldb_average_mass) | number]] moles, you'll have [[ recipe.scale(14.78, ingredient.density, ingredient.moldb_average_mass) | number]].</em></p>
     </div>
+         <div class="col-md-3"></div>
+        </div></div>
 </div>
   </div>
     </div>
