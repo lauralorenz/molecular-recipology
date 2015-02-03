@@ -1,14 +1,17 @@
-{% load staticfiles %}
+{%  load staticfiles %}
 <!DOCTYPE html>
-<html  >
+<html  ng-app="recipes">
   <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
 
   </head>
-  <body  ng-app="recipes" class="container">
-  <div ng-controller="recipeCtrl as recipe">
-  <div >
+  <body ng-controller="recipeCtrl as recipe"  class="container" style="background-color:#FBF8E5;">
+
+  <div ng-controller="tabCtrl as tab" ng-init="tab.tab=1">
+   <hello-garlic></hello-garlic>
+  <div ng-show="tab.tab == 2">
+      <div>[[ recipe.divergence_index(recipe.ingredients) | number]]</div>
     <div class="well" ng-repeat="ingredient in recipe.ingredients">
       <h3>
         <p>[[ingredient.name]], [[ingredient.density]]<em class="pull-right">[[ recipe.scale(14.78, 1, ingredient.moldb_average_mass) | number]] vs [[ recipe.scale(14.78, ingredient.density, ingredient.moldb_average_mass) | number]]</em></p>

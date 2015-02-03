@@ -6,8 +6,28 @@
     $interpolateProvider.endSymbol(']]');
       });
 
-    app.controller('recipeCtrl', function () {
+    app.directive('helloGarlic', function(){
+        return {
+          //template: 'Hi hello there!',
+            templateUrl: '/static/templates/hello.html',
+            restrict: 'E'
+        };
+    });
 
+    app.controller('tabCtrl', function() {
+        this.setTab = function(new_tab){
+            console.log("New Tab"+new_tab);
+            this.tab = new_tab;
+            console.log(this.tab);
+        };
+        this.isTab = function (this_tab) {
+            console.log("checking Tab"+this.tab);
+            return (this.tab == this_tab);
+        }
+    });
+
+    app.controller('recipeCtrl', function () {
+        console.log(this.tab);
         this.ingredients = ingredients;
         this.scale = function(ml, density,moldb_average_mass){
             return (density * ml) / moldb_average_mass;
