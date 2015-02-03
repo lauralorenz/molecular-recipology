@@ -12,6 +12,23 @@
         this.scale = function(ml, density,moldb_average_mass){
             return (density * ml) / moldb_average_mass;
         };
+        this.divergence_index = function(ingredients){
+            this.ratios=[];
+            for(i = 0; i < ingredients.length; i++)
+            {
+                var ingredient = ingredients[i];
+                true_scale = this.scale(14.78, ingredient.density, ingredient.moldb_average_mass);
+                inaccurate_scale = this.scale(14.58, 1, ingredient.moldb_average_mass);
+                curr_ratio = true_scale/inaccurate_scale;
+                if(curr_ratio != 0) {
+                    this.ratios.push(curr_ratio);
+                };
+            };
+            var sum_ratios = this.ratios.reduce(function(prev, current){
+                return current + prev;
+            },0);
+            return sum_ratios/this.ratios.length;
+        };
 
     });
 
