@@ -20,9 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '3j9twrbcv&eop2vmj4-92ko8==iy4#91h@ceax*rdajbgn8emi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -101,4 +101,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+try:
+    from _local.settings import *
+except ImportError as e:
+    print e.message
 
