@@ -138,3 +138,5 @@ sftp-config.json
 #Heroku
 venv
 staticfiles
+
+data
