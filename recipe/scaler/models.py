@@ -9,8 +9,115 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+class Compounds(models.Model):
+    id = models.IntegerField(primary_key=True)  # AutoField?
+    legacy_id = models.IntegerField(blank=True, null=True)
+    type = models.CharField(max_length=255)
+    public_id = models.CharField(unique=True, max_length=9)
+    name = models.CharField(unique=True, max_length=255)
+    export = models.IntegerField(blank=True, null=True)
+    assigned_to_id = models.IntegerField(blank=True, null=True)
+    state = models.CharField(max_length=255, blank=True)
+    annotation_quality = models.CharField(max_length=255, blank=True)
+    description = models.TextField(blank=True)
+    cas_number = models.CharField(unique=True, max_length=255, blank=True)
+    melting_point = models.TextField(blank=True)
+    protein_formula = models.CharField(max_length=255, blank=True)
+    protein_weight = models.CharField(max_length=255, blank=True)
+    experimental_solubility = models.CharField(max_length=255, blank=True)
+    experimental_logp = models.CharField(max_length=255, blank=True)
+    hydrophobicity = models.CharField(max_length=255, blank=True)
+    isoelectric_point = models.CharField(max_length=255, blank=True)
+    metabolism = models.TextField(blank=True)
+    kegg_compound_id = models.CharField(unique=True, max_length=255, blank=True)
+    pubchem_compound_id = models.CharField(unique=True, max_length=255, blank=True)
+    pubchem_substance_id = models.CharField(unique=True, max_length=255, blank=True)
+    chebi_id = models.CharField(unique=True, max_length=255, blank=True)
+    het_id = models.CharField(max_length=255, blank=True)
+    uniprot_id = models.CharField(max_length=255, blank=True)
+    uniprot_name = models.CharField(max_length=255, blank=True)
+    genbank_id = models.CharField(max_length=255, blank=True)
+    wikipedia_id = models.CharField(max_length=255, blank=True)
+    synthesis_citations = models.TextField(blank=True)
+    general_citations = models.TextField(blank=True)
+    comments = models.TextField(blank=True)
+    protein_structure_file_name = models.CharField(max_length=255, blank=True)
+    protein_structure_content_type = models.CharField(max_length=255, blank=True)
+    protein_structure_file_size = models.IntegerField(blank=True, null=True)
+    protein_structure_updated_at = models.DateTimeField(blank=True, null=True)
+    msds_file_name = models.CharField(max_length=255, blank=True)
+    msds_content_type = models.CharField(max_length=255, blank=True)
+    msds_file_size = models.IntegerField(blank=True, null=True)
+    msds_updated_at = models.DateTimeField(blank=True, null=True)
+    mass_spec_file_name = models.CharField(max_length=255, blank=True)
+    mass_spec_content_type = models.CharField(max_length=255, blank=True)
+    mass_spec_file_size = models.IntegerField(blank=True, null=True)
+    mass_spec_updated_at = models.DateTimeField(blank=True, null=True)
+    creator_id = models.IntegerField(blank=True, null=True)
+    updater_id = models.IntegerField(blank=True, null=True)
+    created_at = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+    phenolexplorer_id = models.IntegerField(unique=True, blank=True, null=True)
+    dfc_id = models.CharField(unique=True, max_length=255, blank=True)
+    hmdb_id = models.CharField(unique=True, max_length=255, blank=True)
+    duke_id = models.CharField(max_length=255, blank=True)
+    drugbank_id = models.CharField(unique=True, max_length=255, blank=True)
+    bigg_id = models.IntegerField(blank=True, null=True)
+    eafus_id = models.CharField(unique=True, max_length=255, blank=True)
+    knapsack_id = models.CharField(unique=True, max_length=255, blank=True)
+    boiling_point = models.CharField(max_length=255, blank=True)
+    boiling_point_reference = models.CharField(max_length=255, blank=True)
+    charge = models.CharField(max_length=255, blank=True)
+    charge_reference = models.CharField(max_length=255, blank=True)
+    density = models.CharField(max_length=255, blank=True)
+    density_reference = models.CharField(max_length=255, blank=True)
+    optical_rotation = models.CharField(max_length=255, blank=True)
+    optical_rotation_reference = models.CharField(max_length=255, blank=True)
+    percent_composition = models.CharField(max_length=255, blank=True)
+    percent_composition_reference = models.CharField(max_length=255, blank=True)
+    physical_description = models.TextField(blank=True)
+    physical_description_reference = models.TextField(blank=True)
+    refractive_index = models.CharField(max_length=255, blank=True)
+    refractive_index_reference = models.CharField(max_length=255, blank=True)
+    uv_index = models.CharField(max_length=255, blank=True)
+    uv_index_reference = models.CharField(max_length=255, blank=True)
+    experimental_pka = models.CharField(max_length=255, blank=True)
+    experimental_pka_reference = models.CharField(max_length=255, blank=True)
+    experimental_solubility_reference = models.CharField(max_length=255, blank=True)
+    experimental_logp_reference = models.CharField(max_length=255, blank=True)
+    hydrophobicity_reference = models.CharField(max_length=255, blank=True)
+    isoelectric_point_reference = models.CharField(max_length=255, blank=True)
+    melting_point_reference = models.CharField(max_length=255, blank=True)
+    moldb_alogps_logp = models.CharField(max_length=255, blank=True)
+    moldb_logp = models.CharField(max_length=255, blank=True)
+    moldb_alogps_logs = models.CharField(max_length=255, blank=True)
+    moldb_smiles = models.TextField(blank=True)
+    moldb_pka = models.CharField(max_length=255, blank=True)
+    moldb_formula = models.CharField(max_length=255, blank=True)
+    moldb_average_mass = models.CharField(max_length=255, blank=True)
+    moldb_inchi = models.TextField(blank=True)
+    moldb_mono_mass = models.CharField(max_length=255, blank=True)
+    moldb_inchikey = models.CharField(max_length=255, blank=True)
+    moldb_alogps_solubility = models.CharField(max_length=255, blank=True)
+    moldb_id = models.IntegerField(blank=True, null=True)
+    moldb_iupac = models.TextField(blank=True)
+    structure_source = models.CharField(max_length=255, blank=True)
+    duplicate_id = models.CharField(max_length=255, blank=True)
+    old_dfc_id = models.CharField(max_length=255, blank=True)
+    dfc_name = models.TextField(blank=True)
+    compound_source = models.CharField(max_length=255, blank=True)
+    flavornet_id = models.CharField(unique=True, max_length=255, blank=True)
+    goodscent_id = models.CharField(unique=True, max_length=255, blank=True)
+    superscent_id = models.CharField(unique=True, max_length=255, blank=True)
+    phenolexplorer_metabolite_id = models.IntegerField(unique=True, blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'compounds'
+
 class Foods(models.Model):
     id = models.IntegerField(primary_key=True)  # AutoField?
+    compounds = models.ManyToManyField(Compounds, through="CompoundsFoods", related_name="foods")
     name = models.CharField(unique=True, max_length=255)
     name_scientific = models.CharField(max_length=255, blank=True)
     description = models.TextField(blank=True)
@@ -33,6 +140,38 @@ class Foods(models.Model):
         managed = True
         db_table = 'foods'
 
+
+
+class CompoundsFoods(models.Model):
+    id = models.IntegerField(primary_key=True)  # AutoField?
+    compound_id = models.ForeignKey(Compounds, db_column='compound_id')
+    food_id= models.ForeignKey(Foods, db_column="food_id")
+    orig_food_id = models.CharField(max_length=255, blank=True)
+    orig_food_common_name = models.CharField(max_length=255, blank=True)
+    orig_food_scientific_name = models.CharField(max_length=255, blank=True)
+    orig_food_part = models.CharField(max_length=255, blank=True)
+    orig_compound_id = models.CharField(max_length=255, blank=True)
+    orig_compound_name = models.CharField(max_length=255, blank=True)
+    orig_content = models.DecimalField(max_digits=15, decimal_places=9, blank=True, null=True)
+    orig_min = models.DecimalField(max_digits=15, decimal_places=9, blank=True, null=True)
+    orig_max = models.DecimalField(max_digits=15, decimal_places=9, blank=True, null=True)
+    orig_unit = models.CharField(max_length=255, blank=True)
+    orig_citation = models.TextField(blank=True)
+    citation = models.TextField()
+    citation_type = models.CharField(max_length=255)
+    creator_id = models.IntegerField(blank=True, null=True)
+    updater_id = models.IntegerField(blank=True, null=True)
+    created_at = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+    orig_method = models.CharField(max_length=255, blank=True)
+    orig_unit_expression = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        managed = True
+        db_table = 'compounds_foods'
+
+    def __unicode__(self):
+        return self.orig_compound_name
 
 class AccessionNumbers(models.Model):
     id = models.IntegerField(primary_key=True)  # AutoField?
@@ -153,111 +292,7 @@ class CompoundSynonyms(models.Model):
         db_table = 'compound_synonyms'
 
 
-class Compounds(models.Model):
-    id = models.IntegerField(primary_key=True)  # AutoField?
-    legacy_id = models.IntegerField(blank=True, null=True)
-    type = models.CharField(max_length=255)
-    public_id = models.CharField(unique=True, max_length=9)
-    name = models.CharField(unique=True, max_length=255)
-    export = models.IntegerField(blank=True, null=True)
-    assigned_to_id = models.IntegerField(blank=True, null=True)
-    state = models.CharField(max_length=255, blank=True)
-    annotation_quality = models.CharField(max_length=255, blank=True)
-    description = models.TextField(blank=True)
-    cas_number = models.CharField(unique=True, max_length=255, blank=True)
-    melting_point = models.TextField(blank=True)
-    protein_formula = models.CharField(max_length=255, blank=True)
-    protein_weight = models.CharField(max_length=255, blank=True)
-    experimental_solubility = models.CharField(max_length=255, blank=True)
-    experimental_logp = models.CharField(max_length=255, blank=True)
-    hydrophobicity = models.CharField(max_length=255, blank=True)
-    isoelectric_point = models.CharField(max_length=255, blank=True)
-    metabolism = models.TextField(blank=True)
-    kegg_compound_id = models.CharField(unique=True, max_length=255, blank=True)
-    pubchem_compound_id = models.CharField(unique=True, max_length=255, blank=True)
-    pubchem_substance_id = models.CharField(unique=True, max_length=255, blank=True)
-    chebi_id = models.CharField(unique=True, max_length=255, blank=True)
-    het_id = models.CharField(max_length=255, blank=True)
-    uniprot_id = models.CharField(max_length=255, blank=True)
-    uniprot_name = models.CharField(max_length=255, blank=True)
-    genbank_id = models.CharField(max_length=255, blank=True)
-    wikipedia_id = models.CharField(max_length=255, blank=True)
-    synthesis_citations = models.TextField(blank=True)
-    general_citations = models.TextField(blank=True)
-    comments = models.TextField(blank=True)
-    protein_structure_file_name = models.CharField(max_length=255, blank=True)
-    protein_structure_content_type = models.CharField(max_length=255, blank=True)
-    protein_structure_file_size = models.IntegerField(blank=True, null=True)
-    protein_structure_updated_at = models.DateTimeField(blank=True, null=True)
-    msds_file_name = models.CharField(max_length=255, blank=True)
-    msds_content_type = models.CharField(max_length=255, blank=True)
-    msds_file_size = models.IntegerField(blank=True, null=True)
-    msds_updated_at = models.DateTimeField(blank=True, null=True)
-    mass_spec_file_name = models.CharField(max_length=255, blank=True)
-    mass_spec_content_type = models.CharField(max_length=255, blank=True)
-    mass_spec_file_size = models.IntegerField(blank=True, null=True)
-    mass_spec_updated_at = models.DateTimeField(blank=True, null=True)
-    creator_id = models.IntegerField(blank=True, null=True)
-    updater_id = models.IntegerField(blank=True, null=True)
-    created_at = models.DateTimeField(blank=True, null=True)
-    updated_at = models.DateTimeField(blank=True, null=True)
-    phenolexplorer_id = models.IntegerField(unique=True, blank=True, null=True)
-    dfc_id = models.CharField(unique=True, max_length=255, blank=True)
-    hmdb_id = models.CharField(unique=True, max_length=255, blank=True)
-    duke_id = models.CharField(max_length=255, blank=True)
-    drugbank_id = models.CharField(unique=True, max_length=255, blank=True)
-    bigg_id = models.IntegerField(blank=True, null=True)
-    eafus_id = models.CharField(unique=True, max_length=255, blank=True)
-    knapsack_id = models.CharField(unique=True, max_length=255, blank=True)
-    boiling_point = models.CharField(max_length=255, blank=True)
-    boiling_point_reference = models.CharField(max_length=255, blank=True)
-    charge = models.CharField(max_length=255, blank=True)
-    charge_reference = models.CharField(max_length=255, blank=True)
-    density = models.CharField(max_length=255, blank=True)
-    density_reference = models.CharField(max_length=255, blank=True)
-    optical_rotation = models.CharField(max_length=255, blank=True)
-    optical_rotation_reference = models.CharField(max_length=255, blank=True)
-    percent_composition = models.CharField(max_length=255, blank=True)
-    percent_composition_reference = models.CharField(max_length=255, blank=True)
-    physical_description = models.TextField(blank=True)
-    physical_description_reference = models.TextField(blank=True)
-    refractive_index = models.CharField(max_length=255, blank=True)
-    refractive_index_reference = models.CharField(max_length=255, blank=True)
-    uv_index = models.CharField(max_length=255, blank=True)
-    uv_index_reference = models.CharField(max_length=255, blank=True)
-    experimental_pka = models.CharField(max_length=255, blank=True)
-    experimental_pka_reference = models.CharField(max_length=255, blank=True)
-    experimental_solubility_reference = models.CharField(max_length=255, blank=True)
-    experimental_logp_reference = models.CharField(max_length=255, blank=True)
-    hydrophobicity_reference = models.CharField(max_length=255, blank=True)
-    isoelectric_point_reference = models.CharField(max_length=255, blank=True)
-    melting_point_reference = models.CharField(max_length=255, blank=True)
-    moldb_alogps_logp = models.CharField(max_length=255, blank=True)
-    moldb_logp = models.CharField(max_length=255, blank=True)
-    moldb_alogps_logs = models.CharField(max_length=255, blank=True)
-    moldb_smiles = models.TextField(blank=True)
-    moldb_pka = models.CharField(max_length=255, blank=True)
-    moldb_formula = models.CharField(max_length=255, blank=True)
-    moldb_average_mass = models.CharField(max_length=255, blank=True)
-    moldb_inchi = models.TextField(blank=True)
-    moldb_mono_mass = models.CharField(max_length=255, blank=True)
-    moldb_inchikey = models.CharField(max_length=255, blank=True)
-    moldb_alogps_solubility = models.CharField(max_length=255, blank=True)
-    moldb_id = models.IntegerField(blank=True, null=True)
-    moldb_iupac = models.TextField(blank=True)
-    structure_source = models.CharField(max_length=255, blank=True)
-    duplicate_id = models.CharField(max_length=255, blank=True)
-    old_dfc_id = models.CharField(max_length=255, blank=True)
-    dfc_name = models.TextField(blank=True)
-    compound_source = models.CharField(max_length=255, blank=True)
-    flavornet_id = models.CharField(unique=True, max_length=255, blank=True)
-    goodscent_id = models.CharField(unique=True, max_length=255, blank=True)
-    superscent_id = models.CharField(unique=True, max_length=255, blank=True)
-    phenolexplorer_metabolite_id = models.IntegerField(unique=True, blank=True, null=True)
 
-    class Meta:
-        managed = True
-        db_table = 'compounds'
 
 
 class CompoundsEnzymes(models.Model):
@@ -290,36 +325,7 @@ class CompoundsFlavors(models.Model):
         db_table = 'compounds_flavors'
 
 
-class CompoundsFoods(models.Model):
-    id = models.IntegerField(primary_key=True)  # AutoField?
-    compound_id = models.ForeignKey(Compounds, related_name="compounds", db_column='compound_id')
-    food_id= models.ForeignKey(Foods, related_name="foods", db_column="food_id")
-    orig_food_id = models.CharField(max_length=255, blank=True)
-    orig_food_common_name = models.CharField(max_length=255, blank=True)
-    orig_food_scientific_name = models.CharField(max_length=255, blank=True)
-    orig_food_part = models.CharField(max_length=255, blank=True)
-    orig_compound_id = models.CharField(max_length=255, blank=True)
-    orig_compound_name = models.CharField(max_length=255, blank=True)
-    orig_content = models.DecimalField(max_digits=15, decimal_places=9, blank=True, null=True)
-    orig_min = models.DecimalField(max_digits=15, decimal_places=9, blank=True, null=True)
-    orig_max = models.DecimalField(max_digits=15, decimal_places=9, blank=True, null=True)
-    orig_unit = models.CharField(max_length=255, blank=True)
-    orig_citation = models.TextField(blank=True)
-    citation = models.TextField()
-    citation_type = models.CharField(max_length=255)
-    creator_id = models.IntegerField(blank=True, null=True)
-    updater_id = models.IntegerField(blank=True, null=True)
-    created_at = models.DateTimeField(blank=True, null=True)
-    updated_at = models.DateTimeField(blank=True, null=True)
-    orig_method = models.CharField(max_length=255, blank=True)
-    orig_unit_expression = models.CharField(max_length=255, blank=True)
 
-    class Meta:
-        managed = True
-        db_table = 'compounds_foods'
-
-    def __unicode__(self):
-        return self.orig_compound_name
 
 
 class CompoundsHealthEffects(models.Model):
