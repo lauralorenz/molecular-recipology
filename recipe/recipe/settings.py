@@ -12,11 +12,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -28,8 +23,6 @@ ALLOWED_HOSTS = ['*']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '3j9twrbcv&eop2vmj4-92ko8==iy4#91h@ceax*rdajbgn8emi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -61,11 +54,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, "static"),
 )
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = "staticfiles"
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
-    'PAGINATE_BY': 10
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
+    'PAGINATE_BY': 10,
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 }
 
 MIDDLEWARE_CLASSES = (
@@ -81,9 +75,6 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'recipe.urls'
 
 WSGI_APPLICATION = 'recipe.wsgi.application'
-
-
-
 
 
 # Internationalization

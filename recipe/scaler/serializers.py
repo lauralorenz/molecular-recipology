@@ -9,12 +9,11 @@ class FoodsSerializer(serializers.ModelSerializer):
 class CompoundsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Compounds
-		fields = ['id', 'moldb_average_mass']
+		fields = ['id', 'moldb_average_mass', 'density']
 
 class CompoundsFoodsSerializer(serializers.ModelSerializer):
 	food_id = FoodsSerializer()
 	compound_id = CompoundsSerializer()
 	class Meta:
 		model = CompoundsFoods
-		depth = 2
-		fields = ['id', 'compound_id', 'food_id']
+		fields = ['id','compound_id', 'food_id']
