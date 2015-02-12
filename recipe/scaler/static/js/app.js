@@ -8,7 +8,6 @@
 
     app.directive('helloGarlic', function(){
         return {
-          //template: 'Hi hello there!',
             templateUrl: '/static/templates/hello.html',
             restrict: 'E'
         };
@@ -26,7 +25,7 @@
         }
     });
 
-    app.controller('recipeCtrl', function () {
+    app.controller('recipeCtrl',function (apiService) {
         console.log(this.tab);
         this.ingredients = ingredients;
         this.scale = function(ml, density,moldb_average_mass){
@@ -49,7 +48,51 @@
             },0);
             return sum_ratios/this.ratios.length;
         };
+        this.getFood = function(name){
+            apiService.getFood(name);
+        };
+        this.getFoodsCompounds = function(id){
+                apiService.getFoodsCompounds(id);
+            };
+        this.getCompound = function(id){
+                apiService.getCompound(id);
+        };
+    }
+    );
 
+    app.service("apiService", function($http, $q){
+        return({getFood: getFood,
+                getFoodsCompounds: getFoodsCompounds,
+                getCompound: getCompound});
+
+        function getFood(name){
+
+            var request = $http({
+                method: "get",
+                url: "/api/foods?name="+name
+            });
+            return (request.success(handleSuccess));
+        }
+
+        function handleSuccess(data, status, headers, config){
+            return data;
+        }
+
+        function getFoodsCompounds(id){
+            var request = $http({
+                method: "get",
+                url: "/api/data/"+id
+            });
+            return (request.success(handleSuccess));
+        }
+
+        function getCompound(id){
+            var request = $http({
+                method: "get",
+                url: "/api/compounds/"+id
+            });
+            return (request.success(handleSuccess));
+        }
     });
 
    var ingredients = [
