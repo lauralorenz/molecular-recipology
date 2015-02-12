@@ -6,7 +6,7 @@
      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
      <script src="{% static "js/app.js"  %}"></script>
   </head>
-  <body ng-controller="recipeCtrl as recipe"  style="background-color:#FBF8E5;">
+  <body ng-controller="recipeCtrl as recipe"  style="background-color:#FBF8E5;" ng-init="recipe.getAllFoods()">
     <div class="container-fluid">
         <div ng-controller="tabCtrl as tab" ng-init="tab.tab=1">
             <hello-garlic></hello-garlic>
@@ -20,12 +20,13 @@
                     <div>
                     <p><h1>[[ recipe.divergence_index(recipe.ingredients) | number]]</h1></p>
                     <p><h2>times wrong!</h2></p>
+                             <select data-ng-options="name for name in foodNames" data-ng-model="foodNames"><option value="">-- Try a Different Food! --</option></select>
                     </div>
                 </div>
             <div  class="row" ng-repeat="ingredient in recipe.ingredients">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <p>My <strong>[[ingredient.name]]</strong> ratio will be off by <strong>[[ingredient.density]]X</strong>. Instead of [[ recipe.scale(14.78, 1, ingredient.moldb_average_mass) | number]] moles, you'll have [[ recipe.scale(14.78, ingredient.density, ingredient.moldb_average_mass) | number]].</em></p>
+                    <p>My <strong>[[ingredient.name]]</strong> ratio will be off by <strong>[[ingredient.density]]X</strong>. Instead of [[ recipe.scale(14.78, 1, ingredient.moldb_average_mass) | number]] moles, you'll have [[ recipe.scale(14.78, ingredient.density, ingredient.moldb_average_mass) | number]].</p>
                 </div>
                 <div class="col-md-3"></div>
             </div>

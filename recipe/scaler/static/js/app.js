@@ -25,8 +25,8 @@
         }
     });
 
-    app.controller('recipeCtrl',function (apiService) {
-        console.log(this.tab);
+    app.controller('recipeCtrl',function (apiService, $scope) {
+        window.MY_SCOPE = $scope;
         this.ingredients = ingredients;
         this.scale = function(ml, density,moldb_average_mass){
             return (density * ml) / moldb_average_mass;
@@ -49,13 +49,22 @@
             return sum_ratios/this.ratios.length;
         };
         this.getFood = function(name){
-            apiService.getFood(name);
+            apiService.getFood(name).then(function(response){
+                    $scope['currFood'] = response.data.results[0];
+            }
+            );
         };
-        this.getFoodsCompounds = function(id){
-                apiService.getFoodsCompounds(id);
-            };
-        this.getCompound = function(id){
-                apiService.getCompound(id);
+        this.getAllFoods = function(){
+
+            var data = apiService.getAllFoods().then(function(response){
+                var foodNames = [];
+                data = response.data;
+                console.log(response.data);
+                for(obj in data.results){
+                    foodNames.push(data.results[obj].name);
+                };
+                $scope['foodNames'] = foodNames;
+            });
         };
     }
     );
@@ -63,35 +72,24 @@
     app.service("apiService", function($http, $q){
         return({getFood: getFood,
                 getFoodsCompounds: getFoodsCompounds,
-                getCompound: getCompound});
+                getCompound: getCompound,
+                getAllFoods: getAllFoods});
 
         function getFood(name){
-
-            var request = $http({
-                method: "get",
-                url: "/api/foods?name="+name
-            });
-            return (request.success(handleSuccess));
-        }
-
-        function handleSuccess(data, status, headers, config){
-            return data;
+            return $http.get("/api/foods?name="+name)
         }
 
         function getFoodsCompounds(id){
-            var request = $http({
-                method: "get",
-                url: "/api/data/"+id
-            });
-            return (request.success(handleSuccess));
+
+            return $http.get("/api/data/"+id);
         }
 
         function getCompound(id){
-            var request = $http({
-                method: "get",
-                url: "/api/compounds/"+id
-            });
-            return (request.success(handleSuccess));
+            return $http.get("/api/compounds/"+id);
+        }
+
+        function getAllFoods(){
+            return $http.get("/api/foods/");
         }
     });
 
